@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  country-backend-server:
+    container_name: "country-backend-server"
+    build: ./country-backend-server/.
+    env_file: ./country-backend-server/.env
+    ports:
+      - '4001:4001'
+    networks:
+      - mynetwork
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - country-backend-data:/app/data
+
+  geodetails-backend-server:
+    container_name: "geodetails-backend-server"
+    build: ./geodetails-backend-server/.
+    env_file: ./geodetails-backend-server/.env
+    ports:
+      - '4002:4002'
+    networks:
+      - mynetwork
+    depends_on:
+      - country-backend-server
+      - mongodb
+    volumes:
+      - geodetails-backend-data:/app/data
+
+  frontend-server:
+    container_name: "frontend-server"
+    build: ./frontend-server/.
+    env_file: ./frontend-server/.env
+    ports:
+      - '4000:4000'
+    networks:
+      - mynetwork
+    depends_on:
+      - country-backend-server
+      - geodetails-backend-server
+    links:
+      - country-backend-server
+    volumes:
+      - frontend-data:/app/data
+
+  mongodb:
+    container_name: "mongodb-database"
+    image: mongo:4.2.5
+    networks:
+      - mynetwork
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  redis:
+    container_name: redis-server
+    image: "redis:latest"
+    env_file: .env
+    networks:
+      - mynetwork
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass ${REDIS_PASSWORD} --loglevel ${REDIS_LOGLEVEL}
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  country-backend-data:
+  geodetails-backend-data:
+  frontend-data:
+  mongodb-data:
