@@ -59,3 +59,25 @@ Feel free to explore and interact with the application!
 
 **Note:** Ensure you have the necessary dependencies installed, including Docker and Docker Compose.
 **Note:** You also have to register and generate api-keys: GEODETAILS_API_KEY for comunication between api's
+
+## Note
+First step is to use the postman collection and make request in  `Service 2(geodetails-server)`
+
+
+To interact with the Geodetails Server (Service 2), follow these steps:
+
+1. **Use Postman Collection**: Start by using the Postman collection provided in the repository. This collection contains requests for Service 2 (geodetails-server).
+
+2. **Authentication**:
+
+    - **Registration Endpoint:** [http://localhost:4002/api/auth/register](http://localhost:4002/api/auth/register)
+    
+        - In this step, you'll be creating a user. After making the request, you will receive an API key. This key serves as a security mechanism and will be used by other services to contact this service.
+
+    - **Login Endpoint:** [http://localhost:4002/api/auth/login](http://localhost:4002/api/auth/login)
+    
+        - After successfully logging in, your API key will be returned.
+
+    - **Regenerate API Key Endpoint:** [http://localhost:4002/api/auth/regenerate-api-key](http://localhost:4002/api/auth/regenerate-api-key)
+    
+        - Use this endpoint to regenerate your API key in case of security reasons or if you've forgotten the key.
