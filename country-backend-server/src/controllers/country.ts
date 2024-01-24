@@ -20,7 +20,7 @@ export const get = async (req: Request, res: Response) => {
   const keyExists = await redisClient.keyExists(redisKey)
 
   if (keyExists) {
-    const redisData: string = (await redisClient.get(redisKey)) ?? '' 
+    const redisData: string = (await redisClient.get(redisKey)) ?? ''
 
     return sendSuccess(res, message + ' redis data', JSON.parse(redisData))
   }
