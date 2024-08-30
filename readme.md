@@ -1,6 +1,6 @@
-# Basalt Assessment
+# Fullstack microservices architecture sample
 
-This project demonstrates a microservices architecture using Node.js (TypeScript) for backend services and React.js for the frontend. The architecture includes two backend servers, namely `country-backend-server` and `geodetails-backend-server`, and a frontend server called `frontend-server`.
+This project demonstrates a microservices architecture using Node.js (TypeScript) for backend services and React.js (TypeScript) for the frontend. The architecture includes two backend servers, namely `country-backend-server` and `geodetails-backend-server`, and a frontend server called `frontend-server`.
 
 ## Technologies Used
 
